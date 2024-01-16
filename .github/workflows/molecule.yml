@@ -34,7 +34,7 @@ jobs:
         id: role-name
         run: |
           value=$(grep 'role_name' meta/main.yml)
-          name=$value | sed -r 's/^[^:]*:(.*)$/\1/' | tr -d '[:space:]'
+          name=$($value | sed -r 's/^[^:]*:(.*)$/\1/' | tr -d '[:space:]')
           echo "rolename=$name" >> "$GITHUB_OUTPUT"
       - name: Check outputs
         run: echo ${{ steps.role-name.outputs.rolename }}
